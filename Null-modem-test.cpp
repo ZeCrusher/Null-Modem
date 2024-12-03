@@ -177,7 +177,7 @@ void version(void)
 {
 	fond(0);
 	cadre_plein(14,5,65,19,0,WHITE,WHITE,1);  // cadre rep
-	locatext(14,5,"            Test le cable  Nul - Modem              ",WHITE+16*LIGHTRED);
+	locatext(14,5,"            Test le cable  Null-Modem               ",WHITE+16*LIGHTRED);
 	locatext(20,8,"\7",12+16*WHITE);
 	locatext(22,8,"Ce programme teste le cable branch‚  ",0+16*WHITE);
 	locatext(22,9," sur un Port de communication",0+16*WHITE);
