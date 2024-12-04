@@ -16,7 +16,7 @@ MS-DOS :
 
 ![Capture d'écran 2024-12-03 115003](https://github.com/user-attachments/assets/9b621f2b-6944-4fad-b280-c2f400f69fc7)
 
-Command : nullmodem COM1
+Command : nullmodem COM2
 
 ![Capture d'écran 2024-12-03 115024](https://github.com/user-attachments/assets/f7e7e00a-f8bc-4865-aeab-71ff2390c374)
 
