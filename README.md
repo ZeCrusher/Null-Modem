@@ -1,5 +1,6 @@
 # Null-Modem
 Null modem is a communication method for directly connecting two computers using an RS-232 serial cable. This little program is made in DOS to test the connection.
+A null modem cable connects a machine (RS-232) to a machine (RS-232) - PC to PC.
 
 This little program runs under MS-DOS. You can use DOSBox and compile it with Borland C++. 
 
