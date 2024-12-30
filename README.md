@@ -20,4 +20,4 @@ Command : nullmodem COM2
 
 ![Capture d'écran 2024-12-03 115024](https://github.com/user-attachments/assets/f7e7e00a-f8bc-4865-aeab-71ff2390c374)
 
-Ici, il n'y a pas de câble sur le port Com. Car le ssystème effectue une vérification. 
+Ici, il n'y a pas de câble sur le port Com. Car le système effectue une vérification. 
