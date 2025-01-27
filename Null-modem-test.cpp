@@ -13,21 +13,21 @@
 #include <string.h>
 #include <conio.h>
 
-#include "fct\fcadre.cpp" /* #include "c:\tsk\fct\fcadre.cpp" */
+#include "fct\fcadre.cpp" 
 
 #define ADR_COM1 0x3F8
 #define ADR_COM2 0x2F8
 
-#define REG_1 0x00 // Armement intéruptions (tout inhib‚)
-#define REG_2 0x00 // je l'ai mis mais il ne sert … rien. (utile qu'en Lecture).
-#define REG_3 0x03 // transmition 8 bits; 1 Bit d'arret; Paritée 000b; etc...(il y a aussi DLAB)
-#define REG_4 0x00 // Controle du Modem et bit 2 pour g‚n‚rer l'int‚ruption.
-#define REG_5_5 0x20 // Etat des lignes et bit 5 pour possibilité de placer ou pas un caractère
-#define REG_5_0 0x01 // Etat des lignes et bit 0 pour savoir si on a recu un carac
-#define REG_6 0x00 // Etat Modem (… blanc ici!)
-#define REG_7 0x00 // … Blanc ici.
-#define REG_8 0x0C // poids faible du diviseur de vitesse (=12=$0C)(pour 9600 Bauds)
-#define REG_9 0x00 // poids fort du diviseur de vitesse (=0=$00)(pour 9600 Bauds)
+#define REG_1 0x00 	// Armement intéruptions (tout inhib‚)
+#define REG_2 0x00 	// Utile qu'en Lecture
+#define REG_3 0x03 	// transmition 8 bits; 1 Bit d'arret; Paritée 000b; etc...(il y a aussi DLAB)
+#define REG_4 0x00 	// Controle du Modem et bit 2 pour g‚n‚rer l'int‚ruption.
+#define REG_5_5 0x20 	// Etat des lignes et bit 5 pour possibilité de placer ou pas un caractère
+#define REG_5_0 0x01 	// Etat des lignes et bit 0 pour savoir si on a recu un carac
+#define REG_6 0x00 	// Etat Modem (… blanc ici!)
+#define REG_7 0x00 	// … Blanc ici.
+#define REG_8 0x0C 	// poids faible du diviseur de vitesse (=12=$0C)(pour 9600 Bauds)
+#define REG_9 0x00 	// poids fort du diviseur de vitesse (=0=$00)(pour 9600 Bauds)
 #define COM1       0
 #define COM2       1
 #define color(x,y)	textcolor(x);textbackground(y)
@@ -96,7 +96,7 @@ void main(char argc,char **argv)
 		com=ADR_COM2;//COM2;
 	}
 
-	locatext(1,25,"   TSK_ 97 ",15+16*12);
+	locatext(1,25," TSK_ 97/25 ",15+16*12);
 	init_com(com);
 
 	do
@@ -108,12 +108,12 @@ void main(char argc,char **argv)
 		}
 
 		ecrire_com(com,chaine[i]);
-		locatext(20,17,"CaractŠre re‡ue ",0+16*15);
+		locatext(20,17,"Caractère reçu ",0+16*15);
 		delay(10);
 
 		t=lire_com(com);
 		if (t==chaine[i]) {
-			locatext(20,16,"CaractŠre envoy‚e ",0+16*15);
+			locatext(20,16,"Caractère envoyée ",0+16*15);
 			locatcar(43,16,chaine[i],1+16*15);
 			locatext(20,14,"<<         Communication OK         >>",WHITE+16*GREEN);
 			locatcar(43,17,t,2+16*15);
@@ -179,8 +179,8 @@ void version(void)
 	cadre_plein(14,5,65,19,0,WHITE,WHITE,1);  // cadre rep
 	locatext(14,5,"            Test le cable  Null-Modem               ",WHITE+16*LIGHTRED);
 	locatext(20,8,"\7",12+16*WHITE);
-	locatext(22,8,"Ce programme teste le cable branch‚  ",0+16*WHITE);
-	locatext(22,9," sur un Port de communication",0+16*WHITE);
+	locatext(22,8,"Ce programme teste le cable branché  ",0+16*WHITE);
+	locatext(22,9," sur un port de COMmunication",0+16*WHITE);
 	locatext(20,11,"\7",12+16*WHITE);
 	locatext(22,11,"Etat du test en cours",0+16*WHITE);
 
@@ -189,13 +189,13 @@ void init_com(int com)
 {
 	//configure le com
 	outportb(com+3,REG_3);
-	//D‚finit la vitesse
-	//‚criture du poids faible du diviseur
+	//Définit la vitesse
+	//Ecriture du poids faible du diviseur
 	outportb(com+3,REG_3+0X80);//bit 7 de LCR pour DLAB=1
 	outportb(com+0,REG_8);
-	//‚criture du poids fort du diviseur
+	//Ecriture du poids fort du diviseur
 	outportb(com+1,REG_9);
-	//Inhibe les int‚ruptions de l'UART
+	//Inhibe les intéruptions de l'UART
 	outportb(com+3,REG_3);//bit 7 de LCR pour DLAB=0
 	outportb(com+4,REG_4);
 	outportb(com+1,REG_1);
@@ -204,7 +204,7 @@ void init_com(int com)
 void ecrire_com(int com,unsigned char valeur)
 {
 	int v;
-	//teste le bit 5 du registre 5 pour voir s'il y la place d'envoyer un caractŠre
+	// test le bit 5 du registre 5 pour voir s'il y la place d'envoyer un caractère
 	v=inportb(com+5)&(REG_5_5);
 	if (v!=0)	{
 		//ecrire le caractŠre sur le registre 0
@@ -215,7 +215,7 @@ void ecrire_com(int com,unsigned char valeur)
 int lire_com(int com)
 {
 	int v;
-	//teste le bit 5 du registre 5 pour voir s'il y la place d'envoyer un caractŠre
+	// test du bit 5 du registre 5 pour voir s'il y la place d'envoyer un caractŠre
 	v=inportb(com+5)&(REG_5_0);
 
 	if (v!=0)	{	//lecture du com avec le registre 0
@@ -236,4 +236,3 @@ void atts(void)
 	asm	je deb2
 
 }
-
